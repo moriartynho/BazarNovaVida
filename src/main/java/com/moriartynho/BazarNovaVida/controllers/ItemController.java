@@ -1,0 +1,40 @@
+package com.moriartynho.BazarNovaVida.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.moriartynho.BazarNovaVida.dto.NovoItem;
+import com.moriartynho.BazarNovaVida.models.itens.Item;
+import com.moriartynho.BazarNovaVida.repositories.ItemRepository;
+
+import jakarta.validation.Valid;
+
+@Controller
+@RequestMapping("item")
+public class ItemController {
+
+	@Autowired
+	private ItemRepository itemRepository;
+
+	@GetMapping("formulario")
+	public String formulario(NovoItem novoItem) {
+		return "item/novoItemForm";
+	}
+
+	@PostMapping("novo")
+	public String novo(@Valid NovoItem novoItem, BindingResult result) {
+		if (result.hasErrors()) {
+			return "item/novoItemForm";
+		}
+
+		Item item = novoItem.toItem();
+		itemRepository.save(item);
+
+		return "redirect:/home";
+
+	}
+}

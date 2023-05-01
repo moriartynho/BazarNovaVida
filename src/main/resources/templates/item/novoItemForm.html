@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<link
+	href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+	rel="stylesheet">
+<title>Bazar Nova Vida</title>
+</head>
+<body>
+
+	<div class="container">
+
+		<nav
+			class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
+			<div class="navbar-nav">
+				<a href="/home"class="nav-item nav-link">Bazar</a> <a class="nav-item nav-link">Meus
+					pedidos</a> <a href="/item/formulario" class="nav-item nav-link">Novo
+					item</a>
+			</div>
+		</nav>
+
+		<div class="card mt-3">
+		<form th:object="${novoItem}" class="card-body" action="/item/novo" method="POST">
+				<div class="form-group">
+					<label for="nomeDoItem">Nome do item</label>
+					<input th:field="*{nomeDoItem}" th:errorClass="is-invalid" class="form-control" placeholder="Nome do item"/>
+					<small>Informe o nome do produto.</small>
+					<div class="invalid-feedback" th:errors="*{nomeDoItem}">
+							Erros do nome do item
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="valorDoItem">Valor do item</label>
+					<input th:field="*{valorDoItem}" th:errorClass="is-invalid" class="form-control" type="number" placeholder="Valor do item"/>
+					<small>Informe o valor do produto.</small>
+					<div class="invalid-feedback" th:errors="*{nomeDoItem}">
+						Erros do nome do item
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="descricaoDoItem">Descrição do item</label>
+					<input th:field="*{descricaoDoItem}" th:errorClass="is-invalid" class="form-control" placeholder="Descrição do item"/>
+					<small>Informe a descrição do produto.</small>
+					<div class="invalid-feedback" th:errors="*{descricaoDoItem}">
+							Erros do nome do item
+					</div>
+				</div>
+					<button class="btn btn-primary" type="submit">Cadastrar</button>
+				</form>
+		</div>
+	</div>
+
+</body>
+</html>
