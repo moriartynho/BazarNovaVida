@@ -13,21 +13,21 @@ import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Usuario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank
 	private String nomeDoUsuario;
-	
+
 	@CPF
 	private String cpf;
-	
+
 	@NotBlank
 	@Length(min = 6)
 	private String senha;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TipoDeUsuario tipoDeUsuario;
 
@@ -71,6 +71,4 @@ public class Usuario {
 		this.tipoDeUsuario = tipoDeUsuario;
 	}
 
-	
-	
 }

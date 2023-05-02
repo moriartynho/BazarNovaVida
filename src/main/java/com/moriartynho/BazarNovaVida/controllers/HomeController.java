@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.moriartynho.BazarNovaVida.models.itens.EstadoDoItem;
 import com.moriartynho.BazarNovaVida.models.itens.Item;
 import com.moriartynho.BazarNovaVida.repositories.ItemRepository;
 
@@ -20,7 +21,7 @@ public class HomeController {
 	
 	@GetMapping()
 	public String home(Model model) {
-		List<Item> itens = itemRepository.findAll();
+		List<Item> itens = itemRepository.findByEstadoDoItem(EstadoDoItem.DISPONIVEL);
 		model.addAttribute("itens", itens);
 		return "home";
 	}
