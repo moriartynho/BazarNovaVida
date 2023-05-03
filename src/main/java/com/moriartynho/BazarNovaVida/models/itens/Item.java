@@ -29,7 +29,7 @@ public class Item {
 	
 	@NotBlank
 	private String descricaoDoItem;
-
+	
 	@Enumerated(EnumType.STRING)
 	private EstadoDoItem estadoDoItem;
 	

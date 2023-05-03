@@ -1,0 +1,11 @@
+:root{
+    --cor-de-fundo: #cac9c9;
+}
+
+body{
+    background-color: var(--cor-de-fundo);
+}
+
+.cartao{
+    padding-left: 25%;
+}
