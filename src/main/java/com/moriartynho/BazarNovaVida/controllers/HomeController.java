@@ -15,14 +15,16 @@ import com.moriartynho.BazarNovaVida.repositories.ItemRepository;
 @Controller
 @RequestMapping("/home")
 public class HomeController {
-	
+
 	@Autowired
 	private ItemRepository itemRepository;
-	
+
 	@GetMapping()
 	public String home(Model model) {
 		List<Item> itens = itemRepository.findByEstadoDoItem(EstadoDoItem.DISPONIVEL);
+		List<String> imgUrl = itens.stream().map(i -> i.getImgUrl()).toList();
 		model.addAttribute("itens", itens);
+		model.addAttribute("imgUrl", imgUrl);
 		return "home";
 	}
 
