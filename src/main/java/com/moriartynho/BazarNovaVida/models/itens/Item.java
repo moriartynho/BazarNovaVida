@@ -26,14 +26,23 @@ public class Item {
 
 	@NotNull
 	private BigDecimal valorDoItem;
-	
+
 	@NotBlank
 	private String descricaoDoItem;
-	
+
+	@NotBlank
+	private String imgUrl;
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
 	@Enumerated(EnumType.STRING)
 	private EstadoDoItem estadoDoItem;
-	
-
 
 	public Integer getId() {
 		return id;
