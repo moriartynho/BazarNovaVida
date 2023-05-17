@@ -13,13 +13,12 @@ import com.moriartynho.BazarNovaVida.models.itens.Item;
 import com.moriartynho.BazarNovaVida.repositories.ItemRepository;
 
 @Controller
-@RequestMapping("/home")
 public class HomeController {
 
 	@Autowired
 	private ItemRepository itemRepository;
 
-	@GetMapping()
+	@GetMapping("/")
 	public String home(Model model) {
 		List<Item> itens = itemRepository.findByEstadoDoItem(EstadoDoItem.DISPONIVEL);
 		model.addAttribute("itens", itens);

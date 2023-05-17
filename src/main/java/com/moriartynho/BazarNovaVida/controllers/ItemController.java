@@ -27,8 +27,8 @@ public class ItemController {
 		return "item/novoItemForm";
 	}
 
-	@GetMapping("selecionar")
-	public String itemPorId(@RequestParam("id") Long id, Model model) {
+	@GetMapping("/selecionar")
+	public String itemPorId(@RequestParam Long id, Model model) {
 		Item item = itemRepository.getItemById(id);
 		model.addAttribute("item", item);
 		return "item/itemSelecionado";
