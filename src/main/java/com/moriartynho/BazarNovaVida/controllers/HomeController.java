@@ -22,9 +22,7 @@ public class HomeController {
 	@GetMapping()
 	public String home(Model model) {
 		List<Item> itens = itemRepository.findByEstadoDoItem(EstadoDoItem.DISPONIVEL);
-		List<String> imgUrl = itens.stream().map(i -> i.getImgUrl()).toList();
 		model.addAttribute("itens", itens);
-		model.addAttribute("imgUrl", imgUrl);
 		return "home";
 	}
 
