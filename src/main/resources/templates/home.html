@@ -2,48 +2,61 @@
 <html>
 
 <head>
-	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="./styles/styles.css">
-	<title>Bazar Nova Vida</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<link
+	href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}" />
+<title>Bazar Nova Vida</title>
 </head>
 
 <body>
 
 	<div class="container mb-3">
-		<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
+		<nav
+			class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
 			<div class="navbar-nav">
-				<a class="nav-item nav-link">Bazar</a>
-				<a class="nav-item nav-link">Meus pedidos</a>
-				<a href="/item/formulario" class="nav-item nav-link">Novo item</a>
+				<a class="nav-item nav-link">Bazar</a> <a class="nav-item nav-link">Meus
+					pedidos</a> <a href="/item/formulario" class="nav-item nav-link">Novo
+					item</a>
 			</div>
 		</nav>
 
 
 		<div class="card mb-3 " th:each="item : ${itens}">
-		
+
 			<div class="card-body ">
 				<div class="row row-cols-2">
 					<div class="col-6 col-sm-6 mb-3">
-						<div class="row">
+						<div class="row item-home">
 							<div class="col-8">
-								<div class="mb-1"><span th:text="${item.nomeDoItem}"></span></div>
-								<div class=""><span th:if="${item.valorDoItem} != null"
+								<div class="mb-1">
+									<span th:text="${item.nomeDoItem}"></span>
+								</div>
+								<div class="">
+									<span th:if="${item.valorDoItem} != null"
 										th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></span>
 								</div>
-								<div class=""><span th:text="${item.estadoDoItem}"></span></div>
-								<div class="mt-1"><span th:text="${item.descricaoDoItem}"></span></div>
+								<div class="">
+									<span th:text="${item.estadoDoItem}"></span>
+								</div>
+								<div class="mt-1">
+									<span th:text="${item.descricaoDoItem}"></span>
+								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="col-12 col-sm-6 cartao">
-						<div>
-						<a href="./item/itemSelecionado.html" th:href="@{item/selecionar(id=${item.id})}">
-						<img style="max-width: 60%;" class="img-thumbnail" th:src="${item.imgUrl}"/></a>
-						</div>
+					<div class="col-12 col-sm-6">
+
+						<a href="./item/itemSelecionado.html"
+							th:href="@{item/selecionar(id=${item.id})}"> <img
+							class="img-thumbnail item-img-home" th:src="${item.imgUrl}" /></a>
+
 					</div>
 				</div>
 			</div>

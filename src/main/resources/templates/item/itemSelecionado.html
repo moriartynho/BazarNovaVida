@@ -10,7 +10,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="./styles/styles.css">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}" />
 <title>Bazar Nova Vida</title>
 </head>
 
@@ -27,15 +27,14 @@
 		</nav>
 
 
-		<div class="card mb-3">
-			<h2 th:text="${item.nomeDoItem}"></h2>
-			<img style="max-width: 80%;" class="img-thumbnail"
+		<div class="card mb-3 card-item">
+			<h2 class="item__nome" th:text="${item.nomeDoItem}"></h2>
+			<img class="item-img img-thumbnail"
 				th:src="${item.imgUrl}" /></a>
-			<p th:text="${item.descricaoDoItem}"></p>
-			<div class="">
-				<h3 th:if="${item.valorDoItem} != null"
+				<h3 class="item__preco" th:if="${item.valorDoItem} != null"
 					th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></h3>
-			</div>
+			<p class="item__descricao" th:text="${item.descricaoDoItem}"></p>
+				
 		</div>
 	</div>
 
