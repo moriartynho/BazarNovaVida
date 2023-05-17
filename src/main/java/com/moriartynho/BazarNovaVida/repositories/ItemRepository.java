@@ -10,5 +10,6 @@ import com.moriartynho.BazarNovaVida.models.itens.Item;
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
 	List<Item> findByEstadoDoItem(EstadoDoItem disponivel);
+	Item getItemById(Long id);
 
 }

@@ -23,7 +23,7 @@
 
 
 		<div class="card mb-3 " th:each="item : ${itens}">
-		<a th:href="item.html(id=${item.id})">
+		
 			<div class="card-body ">
 				<div class="row row-cols-2">
 					<div class="col-6 col-sm-6 mb-3">
@@ -41,11 +41,11 @@
 
 					<div class="col-12 col-sm-6 cartao">
 						<div>
-							<img style="max-width: 60%;" class="img-thumbnail" th:src="${item.imgUrl}"/>
+						<a th:href="@{selecinar/${item.id}}"><img style="max-width: 60%;" class="img-thumbnail" th:src="${item.imgUrl}"/></a>
 						</div>
 					</div>
 				</div>
-			</div></a>
+			</div>
 		</div>
 	</div>
 
