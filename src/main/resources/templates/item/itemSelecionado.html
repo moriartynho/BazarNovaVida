@@ -35,11 +35,9 @@
 				th:src="${item.imgUrl}" /></a>
 				<h3 class="item__preco" th:if="${item.valorDoItem} != null"
 					th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></h3>
-			<p class="item__descricao" th:text="${item.descricaoDoItem}"></p>
-				
+			<p class="item__descricao" th:text="${item.descricaoDoItem}"></p>	
 		</div>
 	</div>
 
 </body>
-
 </html>
