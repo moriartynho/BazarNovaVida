@@ -43,7 +43,7 @@ public class ItemController {
 		Item item = novoItem.toItem();
 		itemRepository.save(item);
 
-		return "redirect:/home";
+		return "redirect:/";
 
 	}
 }
