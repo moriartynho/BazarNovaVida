@@ -3,6 +3,7 @@
 
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
@@ -24,9 +25,10 @@
 					class="nav-item nav-link">Meus pedidos</a> <a
 					href="/item/formulario" class="nav-item nav-link">Novo item</a>
 			</div>
-		</nav>
+			
+		</nav></div>
 
-
+<div class="item__">
 		<div class="card mb-3 card-item">
 			<h2 class="item__nome" th:text="${item.nomeDoItem}"></h2>
 			<img class="item-img img-thumbnail"
