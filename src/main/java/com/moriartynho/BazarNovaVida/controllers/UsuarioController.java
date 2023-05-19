@@ -1,5 +1,7 @@
 package com.moriartynho.BazarNovaVida.controllers;
 
+import java.security.NoSuchAlgorithmException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -11,6 +13,7 @@ import com.moriartynho.BazarNovaVida.dto.NovoUsuario;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 import com.moriartynho.BazarNovaVida.repositories.UsuarioRepository;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -36,6 +39,14 @@ public class UsuarioController {
 		usuarioRepository.save(usuario);
 
 		return "redirect:/home";
+	}
+	
+	@PostMapping("login")
+	public String login(Usuario usuario, BindingResult result, HttpSession session) throws NoSuchAlgorithmException{
+		Usuario usuarioLogado = usuarioRepository.findByCpf(usuario.getCpf());
+		
+		return null;
+		
 	}
 	
 }

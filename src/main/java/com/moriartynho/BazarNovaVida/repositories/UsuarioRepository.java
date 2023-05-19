@@ -6,4 +6,6 @@ import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
+	Usuario findByCpf(String cpf);
+
 }
