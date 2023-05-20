@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.moriartynho.BazarNovaVida.dto.NovoUsuario;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
-import com.moriartynho.BazarNovaVida.repositories.UsuarioRepository;
+import com.moriartynho.BazarNovaVida.services.UsuarioService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -21,32 +21,35 @@ import jakarta.validation.Valid;
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
-	
+	private UsuarioService usuarioService;
+
 	@GetMapping("formulario")
 	public String formulario(NovoUsuario novoUsuario) {
 		return "usuario/novoUsuarioForm";
 	}
-	
-	
+
 	@PostMapping("novo")
 	public String novo(@Valid NovoUsuario novoUsuario, BindingResult result) {
+		Usuario usuario = novoUsuario.toUsuario();
+
 		if (result.hasErrors()) {
 			return "usuario/novoUsuarioForm";
 		}
 
-		Usuario usuario = novoUsuario.toUsuario();
-		usuarioRepository.save(usuario);
+		if (!usuarioService.cpfExiste(novoUsuario.getCpf())) {
+			usuarioService.insert(usuario);
+			return "redirect:/";
+		} else
+			result.rejectValue("cpf", "error.usuario", "CPF já cadastrado");
+			return "usuario/novoUsuarioForm";
 
-		return "redirect:/home";
 	}
-	
+
 	@PostMapping("login")
-	public String login(Usuario usuario, BindingResult result, HttpSession session) throws NoSuchAlgorithmException{
-		Usuario usuarioLogado = usuarioRepository.findByCpf(usuario.getCpf());
-		
+	public String login(Usuario usuario, BindingResult result, HttpSession session) throws NoSuchAlgorithmException {
+
 		return null;
-		
+
 	}
-	
+
 }

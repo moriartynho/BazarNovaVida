@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.moriartynho.BazarNovaVida.dto.NovoItem;
 import com.moriartynho.BazarNovaVida.models.itens.Item;
-import com.moriartynho.BazarNovaVida.repositories.ItemRepository;
+import com.moriartynho.BazarNovaVida.services.ItemService;
 
 import jakarta.validation.Valid;
 
@@ -20,16 +20,17 @@ import jakarta.validation.Valid;
 public class ItemController {
 
 	@Autowired
-	private ItemRepository itemRepository;
-
+	private ItemService itemService;
+	
+	
 	@GetMapping("formulario")
-	public String formulario(NovoItem novoItem) {
+	public String formulario(NovoItem novo) {
 		return "item/novoItemForm";
 	}
 
 	@GetMapping("/selecionar")
 	public String itemPorId(@RequestParam Long id, Model model) {
-		Item item = itemRepository.getItemById(id);
+		Item item = itemService.findById(id);
 		model.addAttribute("item", item);
 		return "item/itemSelecionado";
 	}
@@ -41,7 +42,7 @@ public class ItemController {
 		}
 
 		Item item = novoItem.toItem();
-		itemRepository.save(item);
+		itemService.insert(item);
 
 		return "redirect:/";
 

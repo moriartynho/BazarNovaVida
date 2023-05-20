@@ -3,6 +3,7 @@ package com.moriartynho.BazarNovaVida.models.usuario;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -21,6 +22,7 @@ public class Usuario {
 	@NotBlank
 	private String nomeDoUsuario;
 
+	@Column(unique = true)
 	@CPF
 	private String cpf;
 

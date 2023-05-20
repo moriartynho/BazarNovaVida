@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.moriartynho.BazarNovaVida.models.itens.EstadoDoItem;
 import com.moriartynho.BazarNovaVida.models.itens.Item;
-import com.moriartynho.BazarNovaVida.repositories.ItemRepository;
+import com.moriartynho.BazarNovaVida.services.ItemService;
 
 @Controller
 public class HomeController {
 
 	@Autowired
-	private ItemRepository itemRepository;
+	private ItemService itemService;
 
 	@GetMapping("/")
 	public String home(Model model) {
-		List<Item> itens = itemRepository.findByEstadoDoItem(EstadoDoItem.DISPONIVEL);
+		List<Item> itens = itemService.findByEstadoDoItem(EstadoDoItem.DISPONIVEL);
 		model.addAttribute("itens", itens);
 		return "home";
 	}

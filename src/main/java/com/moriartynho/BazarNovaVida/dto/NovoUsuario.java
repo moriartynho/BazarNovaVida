@@ -6,11 +6,13 @@ import org.hibernate.validator.constraints.br.CPF;
 import com.moriartynho.BazarNovaVida.models.usuario.TipoDeUsuario;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class NovoUsuario {
 
+	@Column(unique = true)
 	@CPF
 	@NotBlank
 	private String cpf;
