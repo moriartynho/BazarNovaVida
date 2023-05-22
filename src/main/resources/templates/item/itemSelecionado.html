@@ -25,21 +25,28 @@
 					class="nav-item nav-link">Meus pedidos</a> <a
 					href="/item/formulario" class="nav-item nav-link">Novo item</a>
 			</div>
-			
-		</nav></div>
 
-<div class="item__">
-		<div class="card mb-3 card-item">
-			<h2 class="item__nome" th:text="${item.nomeDoItem}"></h2>
-			<img class="item-img img-thumbnail"
-				th:src="${item.imgUrl}" /></a>
-				<h3 class="item__preco" th:if="${item.valorDoItem} != null"
-					th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></h3>
-			<p class="item__descricao" th:text="${item.descricaoDoItem}"></p>
-				
+		</nav>
+	</div>
+	<div class="container">
+		<div class="item__">
+			<div class="card mb-3 card-item">
+				<h2 class="item__nome" th:text="${item.nomeDoItem}"></h2>
+				<div class="row item-container">
+					<div class="col">
+						<img class="item-img" th:src="${item.imgUrl}" /></a>
+					</div>
+					<div class="col">
+						<div class="item_desc_preco">
+							<h3 class="item__preco" th:if="${item.valorDoItem} != null"
+								th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></h3>
+							<p class="item__descricao" th:text="${item.descricaoDoItem}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-
 </body>
 
 </html>

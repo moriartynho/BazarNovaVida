@@ -23,7 +23,13 @@ body {
 }
 
 .item-img {
-	max-width: 50%;
+	background-color: #fff;
+	border: 1px solid #dee2e6;
+	border-radius: 0.25rem;
+	max-width: 100%;
+	height: auto;
+	padding: 0.25rem;
+	margin-top: 0.9rem;
 }
 
 .card-item {
@@ -42,7 +48,7 @@ body {
 }
 
 .item__descricao {
-	font-size: 1rem;
+	font-size: 1.2rem;
 	font-weight: 400;
 }
 
@@ -73,6 +79,19 @@ body {
 	height: auto;
 }
 
-.row{
+.row {
 	justify-content: center;
+}
+
+.item-container {
+	justify-content: center;
+	border: #dee2e6 1px solid;
+	padding: 1rem;
+	margin-bottom: 15px;
+	border-radius: 0.25rem;
+	width: 95%;
+}
+
+.item_desc_preco{
+	margin-top: 1rem;
 }
