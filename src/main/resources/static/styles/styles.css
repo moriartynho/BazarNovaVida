@@ -95,3 +95,7 @@ body {
 .item_desc_preco{
 	margin-top: 1rem;
 }
+
+.btn__carrinho{
+	width: 102%;
+}

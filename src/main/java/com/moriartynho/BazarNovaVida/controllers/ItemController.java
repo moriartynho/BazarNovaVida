@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.moriartynho.BazarNovaVida.dto.NovoItem;
 import com.moriartynho.BazarNovaVida.models.itens.Item;
+import com.moriartynho.BazarNovaVida.models.pedido.Pedido;
 import com.moriartynho.BazarNovaVida.services.ItemService;
 
 import jakarta.validation.Valid;
@@ -21,8 +22,7 @@ public class ItemController {
 
 	@Autowired
 	private ItemService itemService;
-	
-	
+
 	@GetMapping("formulario")
 	public String formulario(NovoItem novo) {
 		return "item/novoItemForm";
@@ -46,5 +46,14 @@ public class ItemController {
 
 		return "redirect:/";
 
+	}
+
+	@PostMapping("/adicionar")
+	public String adicionarAoCarrinho(Item item) {
+		Pedido pedido = new Pedido();
+		pedido.getItens().add(item);
+		System.out.println("Teste");
+		pedido.getItens().forEach(System.out::println);
+		return "redirect:/";
 	}
 }

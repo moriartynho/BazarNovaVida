@@ -1,6 +1,7 @@
 package com.moriartynho.BazarNovaVida.models.pedido;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.moriartynho.BazarNovaVida.models.itens.Item;
@@ -10,8 +11,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Pedido {
@@ -21,9 +23,10 @@ public class Pedido {
 	private Long id;
 	
 	@OneToMany
-	private List<Item> itens;
+	private List<Item> itens = new ArrayList<>();
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
 	private LocalDate dataDoPedido;

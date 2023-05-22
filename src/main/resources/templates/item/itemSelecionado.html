@@ -31,22 +31,31 @@
 	<div class="container">
 		<div class="item__">
 			<div class="card mb-3 card-item">
-				<h2 class="item__nome" th:text="${item.nomeDoItem}"></h2>
-				<div class="row item-container">
-					<div class="col">
-						<img class="item-img" th:src="${item.imgUrl}" /></a>
-					</div>
-					<div class="col">
-						<div class="item_desc_preco">
-							<h3 class="item__preco" th:if="${item.valorDoItem} != null"
-								th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></h3>
-							<p class="item__descricao" th:text="${item.descricaoDoItem}"></p>
+				<form th:object="${item}" action="/item/adicionar" method="POST">
+					<h2 class="item__nome" th:text="${item.nomeDoItem}"></h2>
+					<div class="row item-container">
+						<div class="col">
+							<img class="item-img" th:src="${item.imgUrl}" /></a>
+						</div>
+						<div class="col">
+							<div class="item_desc_preco">
+								<h3 class="item__preco" th:if="${item.valorDoItem} != null"
+									th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></h3>
+								<p class="item__descricao" th:text="${item.descricaoDoItem}"></p>
+
+								<button type="submit" class="btn btn__carrinho btn-secondary">Adicionar
+									ao carrinho</button>
+
+							</div>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
+
 		</div>
+
 	</div>
+
 </body>
 
 </html>
