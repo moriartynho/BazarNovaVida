@@ -26,46 +26,46 @@
 					item</a>
 			</div>
 		</nav>
+	</div>
 
-<div class="itens__home container">
+	<div class="container">
 
-	<div class="justify-content-md-center col">
-		<div class="card row" th:each="item : ${itens}">
+		<div class="justify-content-md-center row">
+			<div class="card" th:each="item : ${itens}">
 
-			<div class="card-body">
-				<div class="">
-					<a href="./item/itemSelecionado.html"
-						th:href="@{item/selecionar(id=${item.id})}"> <img
-						class="img-thumbnail img-fluid"
-						th:src="${item.imgUrl}" /></a>
-				
-					<div>
+				<div class="itens__home card-body col">
+					<div class="">
+						<a href="./item/itemSelecionado.html"
+							th:href="@{item/selecionar(id=${item.id})}"> <img
+							class="img-thumbnail img-fluid" th:src="${item.imgUrl}" /></a>
+
 						<div>
 							<div>
 								<div>
-									<span th:text="${item.nomeDoItem}"></span>
-								</div>
-								<div class="">
-									<span th:if="${item.valorDoItem} != null"
-										th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></span>
-								</div>
-								<div class="">
-									<span th:text="${item.estadoDoItem}"></span>
-								</div>
-								<div class="">
-									<span th:text="${item.descricaoDoItem}"></span>
+									<div>
+										<span style="font-weight: bold; font-size: 1.4rem;" th:text="${item.nomeDoItem}"></span>
+									</div>
+									<div class="">
+										<span th:if="${item.valorDoItem} != null"
+											th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></span>
+									</div>
+									<div class="">
+										<span th:text="${item.estadoDoItem}"></span>
+									</div>
+									<div class="">
+										<span th:text="${item.descricaoDoItem}"></span>
+									</div>
 								</div>
 							</div>
 						</div>
+
+
+
+
 					</div>
-
-
-
-				
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 
 </body>

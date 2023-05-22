@@ -6,8 +6,7 @@
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-
-.item-img-home{
+.item-img-home {
 	max-width: 60%;
 }
 
@@ -15,7 +14,6 @@ body {
 	background-color: #ededed;
 	margin: 0;
 }
-
 
 .item-home {
 	justify-content: center;
@@ -48,14 +46,33 @@ body {
 	font-weight: 400;
 }
 
-.col-8{
+.col-8 {
 	margin-top: 10%;
 }
 
-.itens__home{
+.itens__home {
 	display: flex;
-	width: 35%;
+	max-width: 220px;
 }
-.itens__{
+
+.itens__ {
 	display: flex;
+}
+
+.card-body {
+	text-align: center;
+}
+
+.justify-content-md-center {
+	gap: 1px;
+}
+
+.img-thumbnail {
+	max-height: 180px;
+	width: auto;
+	height: auto;
+}
+
+.row{
+	justify-content: center;
 }
