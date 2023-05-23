@@ -99,3 +99,9 @@ body {
 .btn__carrinho{
 	width: 102%;
 }
+
+.carrinho__icone{
+	max-height: 30px;
+	width: auto;
+	height: auto;
+}

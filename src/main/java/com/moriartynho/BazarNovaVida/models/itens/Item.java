@@ -84,4 +84,10 @@ public class Item {
 		this.estadoDoItem = estadoDoItem;
 	}
 
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", nomeDoItem=" + nomeDoItem + ", valorDoItem=" + valorDoItem + ", descricaoDoItem="
+				+ descricaoDoItem + ", imgUrl=" + imgUrl + ", estadoDoItem=" + estadoDoItem + "]";
+	}
+
 }

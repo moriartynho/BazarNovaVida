@@ -17,43 +17,37 @@
 
 <body>
 
-	<div class="container">
+	<div class="container mb-3">
 		<nav
 			class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
 			<div class="navbar-nav">
 				<a href="/" class="nav-item nav-link">Bazar</a> <a
 					class="nav-item nav-link">Meus pedidos</a> <a
 					href="/item/formulario" class="nav-item nav-link">Novo item</a>
+
+
 			</div>
 
 		</nav>
 	</div>
-		<div class="container">
-			<div class="item__">
-				<div class="card mb-3 card-item">
-
-					<h2 class="item__nome" th:text="${item.nomeDoItem}"></h2>
-					<div class="row item-container">
-						<div class="col">
-							<img class="item-img" th:src="${item.imgUrl}" /></a>
-						</div>
-						<div class="col">
-							<div class="item_desc_preco">
-								<h3 class="item__preco" th:if="${item.valorDoItem} != null"
-									th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></h3>
-								<p class="item__descricao" th:text="${item.descricaoDoItem}"></p>
-
-								<a href="/" th:href="@{/item/adicionar(id=${item.id})}" class="btn btn__carrinho btn-secondary">Adicionar ao carrinho</a>
-
-							</div>
-						</div>
-					</div>
-
+	<h2 style="text-align: center;">Carrinho</h2>
+	<div class="container">
+		<div class="justify-content-md-center row">
+			<div class="card" th:each="item : ${session.carrinho}">
+				<div style="text-align: center;" >
+					<span style="font-weight: bold; font-size: 1.4rem; text-align: center;"
+						th:text="${item.nomeDoItem}"></span>
 				</div>
-
+				<div>
+					<img class="img-thumbnail img-fluid" th:src="${item.imgUrl}" />
+				</div>
+				<div style="text-align: center;" class="">
+					<span th:if="${item.valorDoItem} != null"
+						th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></span>
+				</div>
 			</div>
-
 		</div>
+	</div>
 </body>
 
 </html>

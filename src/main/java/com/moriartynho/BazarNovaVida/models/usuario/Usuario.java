@@ -6,8 +6,7 @@ import java.util.List;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.moriartynho.BazarNovaVida.models.Carrinho;
+import com.moriartynho.BazarNovaVida.models.itens.Item;
 import com.moriartynho.BazarNovaVida.models.pedido.Pedido;
 
 import jakarta.persistence.CascadeType;
@@ -19,7 +18,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 
@@ -43,18 +41,21 @@ public class Usuario {
 
 	@Enumerated(EnumType.STRING)
 	private TipoDeUsuario tipoDeUsuario;
-	
+
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Pedido> pedidos = new ArrayList<>();
-	
-	@Transient
-	private Carrinho carrinho;
 
-	public Carrinho getCarrinho() {
+	@Transient
+	private List<Item> carrinho = new ArrayList<>();;
+
+	public Usuario() {
+	}
+
+	public List<Item> getCarrinho() {
 		return carrinho;
 	}
 
-	public void setCarrinho(Carrinho carrinho) {
+	public void setCarrinho(List<Item> carrinho) {
 		this.carrinho = carrinho;
 	}
 

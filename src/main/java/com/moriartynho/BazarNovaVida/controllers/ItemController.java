@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.moriartynho.BazarNovaVida.dto.NovoItem;
 import com.moriartynho.BazarNovaVida.models.itens.Item;
-import com.moriartynho.BazarNovaVida.models.pedido.Pedido;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 import com.moriartynho.BazarNovaVida.services.ItemService;
 
@@ -50,17 +49,17 @@ public class ItemController {
 
 	}
 
-	@PostMapping("/adicionar")
-	public String adicionarAoCarrinho(Item item, HttpSession session) {
+	@GetMapping("/adicionar")
+	public String adicionarAoCarrinho(@RequestParam Long id, HttpSession session) {
 		if (session.getAttribute("usuarioLogado") == null) {
 			return "redirect:/login/formulario";
 		}
 		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-		
-		usuario.getCarrinho().getItens().add(item);
+
+		itemService.adicionarAoCarrinho(usuario, id);
 		System.out.println(usuario.getNomeDoUsuario());
-		System.out.println("Teste");
-		usuario.getCarrinho().getItens().forEach(System.out::println);
+		usuario.getCarrinho().forEach(System.out::println);
+		session.setAttribute("carrinho", usuario.getCarrinho());
 		return "redirect:/";
 	}
 }
