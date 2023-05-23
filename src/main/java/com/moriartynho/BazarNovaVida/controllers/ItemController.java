@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.moriartynho.BazarNovaVida.dto.NovoItem;
 import com.moriartynho.BazarNovaVida.models.itens.Item;
 import com.moriartynho.BazarNovaVida.models.pedido.Pedido;
+import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 import com.moriartynho.BazarNovaVida.services.ItemService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -49,11 +51,16 @@ public class ItemController {
 	}
 
 	@PostMapping("/adicionar")
-	public String adicionarAoCarrinho(Item item) {
-		Pedido pedido = new Pedido();
-		pedido.getItens().add(item);
+	public String adicionarAoCarrinho(Item item, HttpSession session) {
+		if (session.getAttribute("usuarioLogado") == null) {
+			return "redirect:/login/formulario";
+		}
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		
+		usuario.getCarrinho().getItens().add(item);
+		System.out.println(usuario.getNomeDoUsuario());
 		System.out.println("Teste");
-		pedido.getItens().forEach(System.out::println);
+		usuario.getCarrinho().getItens().forEach(System.out::println);
 		return "redirect:/";
 	}
 }
