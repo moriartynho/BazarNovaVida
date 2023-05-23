@@ -60,7 +60,7 @@
 
 					</div>
 
-					<span style="border-top: #dbdbdb 3px solid;"
+					<span style="border-top: #dbdbdb 3px solid;" th:if="${session.totalPedido} != null"
 						th:text="${'Total: R$ ' + #numbers.formatDecimal(session.totalPedido, 2, 'POINT', 2, 'COMMA')}"></span>
 				</div>
 			</div>
