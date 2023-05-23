@@ -33,20 +33,39 @@
 	<h2 style="text-align: center;">Carrinho</h2>
 	<div class="container">
 		<div class="justify-content-md-center row">
-			<div class="card" th:each="item : ${session.carrinho}">
-				<div style="text-align: center;" >
-					<span style="font-weight: bold; font-size: 1.4rem; text-align: center;"
-						th:text="${item.nomeDoItem}"></span>
+			<div class="col container-carrinho">
+				<div class="card" th:each="item : ${session.carrinho}">
+					<div style="text-align: center;">
+						<span
+							style="font-weight: bold; font-size: 1.4rem; text-align: center;"
+							th:text="${item.nomeDoItem}"></span>
+					</div>
+					<div>
+						<img class="img-thumbnail img-fluid" th:src="${item.imgUrl}" />
+					</div>
+					<div style="text-align: center;" class="">
+						<span th:if="${item.valorDoItem} != null"
+							th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></span>
+					</div>
 				</div>
-				<div>
-					<img class="img-thumbnail img-fluid" th:src="${item.imgUrl}" />
-				</div>
-				<div style="text-align: center;" class="">
-					<span th:if="${item.valorDoItem} != null"
-						th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></span>
+			</div>
+			<div class="col" style="text-align: center">
+				<div class="card">
+					<h3 style="border-bottom: #dbdbdb 3px solid;">Informações do
+						pedido</h3>
+					<div class="pedido__info" th:each="item : ${session.carrinho}">
+						<div>
+							<span style="border-bottom: #e7e7e7 2px solid;" th:text="${item.nomeDoItem +' '+ '(R$ '+ #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')+')'}"></span>
+						</div>
+
+					</div>
+
+					<span style="border-top: #dbdbdb 3px solid;"
+						th:text="${'Total: R$ ' + #numbers.formatDecimal(session.totalPedido, 2, 'POINT', 2, 'COMMA')}"></span>
 				</div>
 			</div>
 		</div>
+
 	</div>
 </body>
 

@@ -1,5 +1,7 @@
 package com.moriartynho.BazarNovaVida.controllers;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,6 +62,9 @@ public class ItemController {
 		System.out.println(usuario.getNomeDoUsuario());
 		usuario.getCarrinho().forEach(System.out::println);
 		session.setAttribute("carrinho", usuario.getCarrinho());
+		
+		double soma = usuario.getCarrinho().stream().map(item -> item.getValorDoItem()).mapToDouble(BigDecimal:: doubleValue).sum();
+		session.setAttribute("totalPedido", soma);
 		return "redirect:/";
 	}
 }
