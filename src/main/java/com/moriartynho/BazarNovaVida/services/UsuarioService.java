@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 import com.moriartynho.BazarNovaVida.repositories.UsuarioRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class UsuarioService {
 
@@ -19,6 +21,10 @@ public class UsuarioService {
 	public boolean cpfExiste(String cpf) {
 		Usuario usuario = usuarioRepository.findByCpf(cpf);
 		return usuario != null;
+	}
+	
+	public Usuario usuarioLogado(HttpSession session) {
+		return (Usuario) session.getAttribute("usuarioLogado");
 	}
 
 }

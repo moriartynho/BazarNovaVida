@@ -55,14 +55,18 @@
 						pedido</h3>
 					<div class="pedido__info" th:each="item : ${session.carrinho}">
 						<div>
-							<span style="border-bottom: #e7e7e7 2px solid;" th:text="${item.nomeDoItem +' '+ '(R$ '+ #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')+')'}"></span>
+							<span style="border-bottom: #e7e7e7 2px solid;"
+								th:text="${item.nomeDoItem +' '+ '(R$ '+ #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')+')'}"></span>
 						</div>
 
 					</div>
 
-					<span style="border-top: #dbdbdb 3px solid;" th:if="${session.totalPedido} != null"
+					<span style="border-top: #dbdbdb 3px solid;"
+						
 						th:text="${'Total: R$ ' + #numbers.formatDecimal(session.totalPedido, 2, 'POINT', 2, 'COMMA')}"></span>
 				</div>
+				
+				<a href="/pedido/finalizar"  class="btn btn-secondary">Finalizar pedido</a>
 			</div>
 		</div>
 

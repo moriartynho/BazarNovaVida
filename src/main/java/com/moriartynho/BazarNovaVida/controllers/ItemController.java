@@ -15,6 +15,7 @@ import com.moriartynho.BazarNovaVida.dto.NovoItem;
 import com.moriartynho.BazarNovaVida.models.itens.Item;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 import com.moriartynho.BazarNovaVida.services.ItemService;
+import com.moriartynho.BazarNovaVida.services.UsuarioService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -25,6 +26,9 @@ public class ItemController {
 
 	@Autowired
 	private ItemService itemService;
+
+	@Autowired
+	private UsuarioService usuarioService;
 
 	@GetMapping("formulario")
 	public String formulario(NovoItem novo) {
@@ -53,17 +57,17 @@ public class ItemController {
 
 	@GetMapping("/adicionar")
 	public String adicionarAoCarrinho(@RequestParam Long id, HttpSession session) {
-		if (session.getAttribute("usuarioLogado") == null) {
+		if (usuarioService.usuarioLogado(session) == null) {
 			return "redirect:/login/formulario";
 		}
-		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+
+		Usuario usuario = usuarioService.usuarioLogado(session);
 
 		itemService.adicionarAoCarrinho(usuario, id);
-		System.out.println(usuario.getNomeDoUsuario());
-		usuario.getCarrinho().forEach(System.out::println);
 		session.setAttribute("carrinho", usuario.getCarrinho());
-		
-		double soma = usuario.getCarrinho().stream().map(item -> item.getValorDoItem()).mapToDouble(BigDecimal:: doubleValue).sum();
+
+		double soma = usuario.getCarrinho().stream().map(item -> item.getValorDoItem())
+				.mapToDouble(BigDecimal::doubleValue).sum();
 		session.setAttribute("totalPedido", soma);
 		return "redirect:/";
 	}

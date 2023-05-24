@@ -21,15 +21,21 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@OneToMany
 	private List<Item> itens = new ArrayList<>();
-	
+
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
-	
+
 	private LocalDate dataDoPedido;
+
+	public Pedido(List<Item> itens, Usuario usuario, LocalDate dataDoPedido) {
+		this.itens = itens;
+		this.usuario = usuario;
+		this.dataDoPedido = dataDoPedido;
+	}
 
 	public Long getId() {
 		return id;

@@ -33,7 +33,7 @@ public class ItemService {
 		Item item = this.findById(id);
 		if(item.getEstadoDoItem()==EstadoDoItem.DISPONIVEL) {
 			usuario.getCarrinho().add(item);
-			//item.setEstadoDoItem(EstadoDoItem.INDISPONIVEL);
+			item.setEstadoDoItem(EstadoDoItem.INDISPONIVEL);
 			itemRepository.save(item);
 			return;
 		}

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.moriartynho.BazarNovaVida.models.itens.Item;
 import com.moriartynho.BazarNovaVida.models.pedido.Pedido;
 import com.moriartynho.BazarNovaVida.repositories.PedidoRepository;
 
@@ -19,8 +18,9 @@ public class PedidoService {
 		return pedidoRepository.findByUsuarioId(id);
 	}
 	
-	public void adicionarAoCarrinho(Item item) {
-		
+	public void insert(Pedido pedido) {
+		pedidoRepository.save(pedido);
 	}
+
 
 }
