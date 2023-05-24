@@ -30,14 +30,13 @@ public class ItemService {
 	}
 
 	public void adicionarAoCarrinho(Usuario usuario, Long id) {
-		Item item = this.findById(id);
-		if(item.getEstadoDoItem()==EstadoDoItem.DISPONIVEL) {
+		Item item = findById(id);
+		if (item.getEstadoDoItem() == EstadoDoItem.DISPONIVEL) {
 			usuario.getCarrinho().add(item);
 			item.setEstadoDoItem(EstadoDoItem.INDISPONIVEL);
 			itemRepository.save(item);
-			return;
 		}
-		
+
 	}
 
 }

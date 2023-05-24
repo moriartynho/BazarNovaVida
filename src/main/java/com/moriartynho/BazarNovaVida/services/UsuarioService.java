@@ -26,5 +26,9 @@ public class UsuarioService {
 	public Usuario usuarioLogado(HttpSession session) {
 		return (Usuario) session.getAttribute("usuarioLogado");
 	}
+	
+	public Usuario findByCpf(String cpf){
+		return usuarioRepository.findByCpf(cpf);
+	}
 
 }

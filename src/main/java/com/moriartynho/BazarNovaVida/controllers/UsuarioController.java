@@ -36,9 +36,10 @@ public class UsuarioController {
 		if (!usuarioService.cpfExiste(novoUsuario.getCpf())) {
 			usuarioService.insert(usuario);
 			return "redirect:/";
-		} else
+		} else {
 			result.rejectValue("cpf", "error.usuario", "CPF já cadastrado");
-		return "usuario/novoUsuarioForm";
+			return "usuario/novoUsuarioForm";
+		}
 
 	}
 

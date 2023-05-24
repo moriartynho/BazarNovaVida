@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.moriartynho.BazarNovaVida.dto.NovoItem;
 import com.moriartynho.BazarNovaVida.models.itens.Item;
+import com.moriartynho.BazarNovaVida.models.usuario.TipoDeUsuario;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 import com.moriartynho.BazarNovaVida.services.ItemService;
 import com.moriartynho.BazarNovaVida.services.UsuarioService;
@@ -31,8 +32,17 @@ public class ItemController {
 	private UsuarioService usuarioService;
 
 	@GetMapping("formulario")
-	public String formulario(NovoItem novo) {
-		return "item/novoItemForm";
+	public String formulario(NovoItem novo, HttpSession session) {
+		Usuario usuario = usuarioService.usuarioLogado(session);
+		if (usuario == null) {
+			return "redirect:/login/formulario";
+		}
+
+		if (usuario.getTipoDeUsuario() == TipoDeUsuario.ADMINISTRADOR) {
+			return "item/novoItemForm";
+		} else {
+			return "redirect:/";
+		}
 	}
 
 	@GetMapping("/selecionar")
@@ -44,6 +54,7 @@ public class ItemController {
 
 	@PostMapping("novo")
 	public String novo(@Valid NovoItem novoItem, BindingResult result) {
+
 		if (result.hasErrors()) {
 			return "item/novoItemForm";
 		}
@@ -57,18 +68,19 @@ public class ItemController {
 
 	@GetMapping("/adicionar")
 	public String adicionarAoCarrinho(@RequestParam Long id, HttpSession session) {
-		if (usuarioService.usuarioLogado(session) == null) {
+		Usuario usuario = usuarioService.usuarioLogado(session);
+		if (usuario == null) {
 			return "redirect:/login/formulario";
 		}
 
-		Usuario usuario = usuarioService.usuarioLogado(session);
-
 		itemService.adicionarAoCarrinho(usuario, id);
+
 		session.setAttribute("carrinho", usuario.getCarrinho());
 
-		double soma = usuario.getCarrinho().stream().map(item -> item.getValorDoItem())
-				.mapToDouble(BigDecimal::doubleValue).sum();
-		session.setAttribute("totalPedido", soma);
+		BigDecimal totalPedido = usuario.getCarrinho().stream().map(Item::getValorDoItem).reduce(BigDecimal.ZERO,
+				BigDecimal::add);
+
+		session.setAttribute("totalPedido", totalPedido.doubleValue());
 		return "redirect:/";
 	}
 }
