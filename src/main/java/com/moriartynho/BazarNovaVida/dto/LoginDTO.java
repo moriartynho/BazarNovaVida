@@ -1,8 +1,15 @@
 package com.moriartynho.BazarNovaVida.dto;
 
+import org.hibernate.validator.constraints.br.CPF;
+
+import jakarta.validation.constraints.NotNull;
+
 public class LoginDTO {
 	
+	@CPF
 	private String cpf;
+	
+	@NotNull
 	private String senha;
 	
 	public LoginDTO() {

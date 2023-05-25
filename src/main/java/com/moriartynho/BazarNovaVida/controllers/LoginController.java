@@ -2,6 +2,7 @@ package com.moriartynho.BazarNovaVida.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,19 +21,25 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("login")
 public class LoginController {
-	
+
 	@Autowired
 	private UsuarioService usuarioService;
 
 	@GetMapping("formulario")
-	public String formulario() {
-		return "usuario/login";
+	public String formulario(HttpSession session) {
+		if (usuarioService.usuarioLogado(session) == null) {
+			return "usuario/login";
+		}
+
+		return "redirect:/";
+
 	}
 
 	@PostMapping("efetua")
-	public String login(@ModelAttribute LoginDTO loginDto, BindingResult result, HttpSession session) {
+	public String login(@ModelAttribute("loginDTO") LoginDTO loginDTO, BindingResult result, HttpSession session,
+			Model model) {
 		EfetuarLogin efetuarLogin = new LoginValido(new LoginCpfNaoExiste(new LoginInvalido()));
-		return efetuarLogin.efetuaLogin(loginDto, result, session, usuarioService);
+		return efetuarLogin.efetuaLogin(loginDTO, result, session, usuarioService);
 
 	}
 }

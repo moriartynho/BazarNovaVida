@@ -92,29 +92,34 @@ body {
 	width: 95%;
 }
 
-.item_desc_preco{
+.item_desc_preco {
 	margin-top: 1rem;
 }
 
-.btn__carrinho{
+.btn__carrinho {
 	width: 102%;
 }
 
-.carrinho__icone{
+.carrinho__icone {
 	max-height: 30px;
 	width: auto;
 	height: auto;
+	margin-left: 10px;
 }
 
-.container-carrinho{
+.container-carrinho {
 	text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
 }
 
-.pedido__info{
+.pedido__info {
 	display: flex;
 	padding: 0.15rem;
-    justify-content: center;
+	justify-content: center;
+}
+
+.formulario {
+	padding: 2%;
 }
