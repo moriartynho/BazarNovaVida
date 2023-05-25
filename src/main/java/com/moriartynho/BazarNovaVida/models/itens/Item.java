@@ -4,12 +4,15 @@ import java.math.BigDecimal;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.moriartynho.BazarNovaVida.models.itens.imagem.Imagem;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -32,6 +35,10 @@ public class Item {
 
 	@NotBlank
 	private String imgUrl;
+	
+	@NotNull
+	@OneToOne
+	private Imagem imagem;
 
 	public String getImgUrl() {
 		return imgUrl;
