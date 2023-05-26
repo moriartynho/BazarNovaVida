@@ -1,6 +1,5 @@
 package com.moriartynho.BazarNovaVida.dto;
 
-
 import java.math.BigDecimal;
 
 import com.moriartynho.BazarNovaVida.models.itens.EstadoDoItem;
@@ -19,17 +18,6 @@ public class NovoItem {
 
 	@NotBlank
 	private String descricaoDoItem;
-
-	@NotBlank
-	private String imgUrl;
-
-	public String getImgUrl() {
-		return imgUrl;
-	}
-
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
 
 	public String getNomeDoItem() {
 		return nomeDoItem;
@@ -60,7 +48,6 @@ public class NovoItem {
 		item.setNomeDoItem(nomeDoItem);
 		item.setValorDoItem(valorDoItem);
 		item.setDescricaoDoItem(descricaoDoItem);
-		item.setImgUrl(imgUrl);
 		item.setEstadoDoItem(EstadoDoItem.DISPONIVEL);
 		return item;
 	}

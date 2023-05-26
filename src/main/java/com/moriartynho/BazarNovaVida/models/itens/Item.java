@@ -6,12 +6,14 @@ import org.hibernate.validator.constraints.Length;
 
 import com.moriartynho.BazarNovaVida.models.itens.imagem.Imagem;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -33,20 +35,10 @@ public class Item {
 	@NotBlank
 	private String descricaoDoItem;
 
-	@NotBlank
-	private String imgUrl;
-	
 	@NotNull
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "imagem_id")
 	private Imagem imagem;
-
-	public String getImgUrl() {
-		return imgUrl;
-	}
-
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
 
 	@Enumerated(EnumType.STRING)
 	private EstadoDoItem estadoDoItem;
@@ -91,10 +83,18 @@ public class Item {
 		this.estadoDoItem = estadoDoItem;
 	}
 
+	public Imagem getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(Imagem imagem) {
+		this.imagem = imagem;
+	}
+
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", nomeDoItem=" + nomeDoItem + ", valorDoItem=" + valorDoItem + ", descricaoDoItem="
-				+ descricaoDoItem + ", imgUrl=" + imgUrl + ", estadoDoItem=" + estadoDoItem + "]";
+				+ descricaoDoItem + ", estadoDoItem=" + estadoDoItem + "]";
 	}
 
 }

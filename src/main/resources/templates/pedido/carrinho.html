@@ -31,7 +31,7 @@
 		</nav>
 	</div>
 	<h2 style="text-align: center;">Carrinho</h2>
-	<div class="container">
+	<div th:if="${session.carrinho} != null" class="container">
 		<div class="justify-content-md-center row">
 			<div class="col container-carrinho">
 				<div class="card" th:each="item : ${session.carrinho}">

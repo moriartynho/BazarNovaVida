@@ -26,7 +26,7 @@
 
 		<div class="card mt-3">
 			<form th:object="${novoItem}" class="card-body" action="/item/novo"
-				method="POST">
+				method="POST" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="nomeDoItem">Nome do item</label> <input
 						th:field="*{nomeDoItem}" th:errorClass="is-invalid"
@@ -53,14 +53,14 @@
 					<div class="invalid-feedback" th:errors="*{descricaoDoItem}">
 						Erros do nome do item</div>
 				</div>
-				
+
+
+
 				<div class="form-group">
-					<label for="imgUrl">Imagem</label> <input
-						th:field="*{imgUrl}" th:errorClass="is-invalid"
-						class="form-control" placeholder="URL de imagem" /> <small>Informe
-						a imagem do item.</small>
-					<div class="invalid-feedback" th:errors="*{imgUrl}">
-						Erros da  imagem do item</div>
+					<label for="imgFile">Imagem</label> <input type="file"
+						accept="image/png, image/jpeg" name="imgFile" class="form-control"
+						placeholder="Imagem" /> <small>Informe a imagem do item.</small>
+
 				</div>
 				<button class="btn btn-primary" type="submit">Cadastrar</button>
 			</form>

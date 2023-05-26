@@ -35,7 +35,7 @@
 					<h2 class="item__nome" th:text="${item.nomeDoItem}"></h2>
 					<div class="row item-container">
 						<div class="col">
-							<img class="item-img" th:src="${item.imgUrl}" /></a>
+							<img class="item-img" th:src="@{'/imagem/' + ${item.imagem.id}}" /></a>
 						</div>
 						<div class="col">
 							<div class="item_desc_preco">

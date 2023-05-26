@@ -50,7 +50,7 @@
 					<div class="">
 						<a href="./item/itemSelecionado.html"
 							th:href="@{item/selecionar(id=${item.id})}"> <img
-							class="img-thumbnail img-fluid" th:src="${item.imgUrl}" /></a>
+							class="img-thumbnail img-fluid" th:src="@{'/imagem/' + ${item.imagem.id}}"/></a>
 
 						<div>
 							<div>

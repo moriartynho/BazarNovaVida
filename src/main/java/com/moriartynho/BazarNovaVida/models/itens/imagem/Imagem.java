@@ -3,6 +3,7 @@ package com.moriartynho.BazarNovaVida.models.itens.imagem;
 import com.moriartynho.BazarNovaVida.models.itens.Item;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class Imagem {
 	private Long id;
 
 	@Lob
+	@Column(name = "dados", columnDefinition = "LONGBLOB")
 	private byte[] dados;
 	
 	@OneToOne(mappedBy = "imagem", cascade = CascadeType.ALL)
