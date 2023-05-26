@@ -23,37 +23,51 @@
 			<div class="navbar-nav">
 				<a href="/" class="nav-item nav-link">Bazar</a> <a
 					class="nav-item nav-link">Meus pedidos</a> <a
+					th:if="${session.usuarioLogado} != null and ${session.usuarioLogado.tipoDeUsuario} == ${T(com.moriartynho.BazarNovaVida.models.usuario.TipoDeUsuario).ADMINISTRADOR}"
 					href="/item/formulario" class="nav-item nav-link">Novo item</a>
 			</div>
+			<div>
+				<a href=""> <span th:if="${session.usuarioLogado} != null"
+					th:text="${session.usuarioLogado.nomeDoUsuario}"> </span>
+				</a> <a href="/login/formulario"> <span
+					th:if="${session.usuarioLogado} == null">Entrar </span>
+				</a> <a th:href="@{/pedido/carrinho}"><img class="carrinho__icone"
+					alt="" src="https://img.icons8.com/?size=512&id=85080&format=png">
+				</a>
+
+			</div>
+
 
 		</nav>
 	</div>
-		<div class="container">
-			<div class="item__">
-				<div class="card mb-3 card-item">
+	<div class="container">
+		<div class="item__">
+			<div class="card mb-3 card-item">
 
-					<h2 class="item__nome" th:text="${item.nomeDoItem}"></h2>
-					<div class="row item-container">
-						<div class="col">
-							<img class="item-img" th:src="@{'/imagem/' + ${item.imagem.id}}" /></a>
-						</div>
-						<div class="col">
-							<div class="item_desc_preco">
-								<h3 class="item__preco" th:if="${item.valorDoItem} != null"
-									th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></h3>
-								<p class="item__descricao" th:text="${item.descricaoDoItem}"></p>
+				<h2 class="item__nome" th:text="${item.nomeDoItem}"></h2>
+				<div class="row item-container">
+					<div class="col">
+						<img class="item-img" th:src="@{'/imagem/' + ${item.imagem.id}}" /></a>
+					</div>
+					<div class="col">
+						<div class="item_desc_preco">
+							<h3 class="item__preco" th:if="${item.valorDoItem} != null"
+								th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></h3>
+							<p class="item__descricao" th:text="${item.descricaoDoItem}"></p>
 
-								<a href="/" th:href="@{/item/adicionar(id=${item.id})}" class="btn btn__carrinho btn-secondary">Adicionar ao carrinho</a>
+							<a href="/" th:href="@{/item/adicionar(id=${item.id})}"
+								class="btn btn__carrinho btn-secondary">Adicionar ao
+								carrinho</a>
 
-							</div>
 						</div>
 					</div>
-
 				</div>
 
 			</div>
 
 		</div>
+
+	</div>
 </body>
 
 </html>

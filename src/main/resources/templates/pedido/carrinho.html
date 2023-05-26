@@ -23,6 +23,7 @@
 			<div class="navbar-nav">
 				<a href="/" class="nav-item nav-link">Bazar</a> <a
 					class="nav-item nav-link">Meus pedidos</a> <a
+					th:if="${session.usuarioLogado} != null and ${session.usuarioLogado.tipoDeUsuario} == ${T(com.moriartynho.BazarNovaVida.models.usuario.TipoDeUsuario).ADMINISTRADOR}"
 					href="/item/formulario" class="nav-item nav-link">Novo item</a>
 
 
@@ -41,7 +42,7 @@
 							th:text="${item.nomeDoItem}"></span>
 					</div>
 					<div>
-						<img class="img-thumbnail img-fluid" th:src="${item.imgUrl}" />
+						<img class="img-thumbnail img-fluid" th:src="@{'/imagem/' + ${item.imagem.id}}" />
 					</div>
 					<div style="text-align: center;" class="">
 						<span th:if="${item.valorDoItem} != null"
@@ -62,14 +63,23 @@
 					</div>
 
 					<span style="border-top: #dbdbdb 3px solid;"
-						
 						th:text="${'Total: R$ ' + #numbers.formatDecimal(session.totalPedido, 2, 'POINT', 2, 'COMMA')}"></span>
 				</div>
-				
-				<a href="/pedido/finalizar"  class="btn btn-secondary">Finalizar pedido</a>
+
+				<a href="/pedido/finalizar" class="btn btn-secondary">Finalizar
+					pedido</a>
 			</div>
 		</div>
 
+	</div>
+
+	<div th:if="${session.carrinho} == null" class="container">
+		<div class="justify-content-md-center row">
+			<div class="col container-carrinho">
+				<h5>Não há nada aqui :(</h5>
+				<a href="/">Retornar ao menu</a>
+			</div>
+		</div>
 	</div>
 </body>
 

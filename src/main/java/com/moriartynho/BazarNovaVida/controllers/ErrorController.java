@@ -9,7 +9,7 @@ public class ErrorController {
 	
 	@GetMapping("error")
 	public String erro() {
-		return "erro";
+		return "error";
 	}
 
 }

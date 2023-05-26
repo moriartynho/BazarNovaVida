@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.moriartynho.BazarNovaVida.models.itens.Item;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 
@@ -29,7 +30,11 @@ public class Pedido {
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataDoPedido;
+
+	public Pedido() {
+	}
 
 	public Pedido(List<Item> itens, Usuario usuario, LocalDate dataDoPedido) {
 		this.itens = itens;

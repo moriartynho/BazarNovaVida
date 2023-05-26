@@ -20,8 +20,20 @@
 			<div class="navbar-nav">
 				<a href="/" class="nav-item nav-link">Bazar</a> <a
 					class="nav-item nav-link">Meus pedidos</a> <a
+					th:if="${session.usuarioLogado} != null and ${session.usuarioLogado.tipoDeUsuario} == ${T(com.moriartynho.BazarNovaVida.models.usuario.TipoDeUsuario).ADMINISTRADOR}"
 					href="/item/formulario" class="nav-item nav-link">Novo item</a>
 			</div>
+			<div>
+				<a href=""> <span th:if="${session.usuarioLogado} != null"
+					th:text="${session.usuarioLogado.nomeDoUsuario}"> </span>
+				</a> <a href="/login/formulario"> <span
+					th:if="${session.usuarioLogado} == null">Entrar </span>
+				</a> <a th:href="@{pedido/carrinho}"><img class="carrinho__icone"
+					alt="" src="https://img.icons8.com/?size=512&id=85080&format=png">
+				</a>
+
+			</div>
+
 		</nav>
 
 		<div class="card mt-3">

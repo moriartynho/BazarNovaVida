@@ -43,4 +43,17 @@ public class PedidoController {
 		return "redirect:/";
 	}
 
+	@GetMapping("meusPedidos")
+	public String meusPedidos(HttpSession session) {
+		Usuario usuario = usuarioService.usuarioLogado(session);
+		if (usuario == null) {
+			return "redirect:/login/formulario";
+		}
+		List<Pedido> pedidos = pedidoService.findByUsuarioId(usuario.getId());
+		session.setAttribute("meusPedidos", pedidos);
+		System.out.println(pedidos);
+
+		return "pedido/meusPedidos";
+	}
+
 }
