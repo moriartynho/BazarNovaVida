@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.moriartynho.BazarNovaVida.models.itens.EstadoDoItem;
@@ -25,7 +26,8 @@ public class ItemService {
 		List<Item> itens = itemRepository.findByEstadoDoItem(disponivel);
 		return itens;
 	}
-
+	
+	@Cacheable
 	public Item findById(Long id) {
 		return itemRepository.findById(id).get();
 	}

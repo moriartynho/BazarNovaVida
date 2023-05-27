@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +49,7 @@ public class PedidoController {
 		return "redirect:/";
 	}
 
+	@Cacheable
 	@GetMapping("meusPedidos")
 	public String meusPedidos(HttpSession session) {
 		Usuario usuario = usuarioService.usuarioLogado(session);

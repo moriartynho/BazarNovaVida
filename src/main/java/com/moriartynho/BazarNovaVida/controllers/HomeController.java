@@ -3,6 +3,7 @@ package com.moriartynho.BazarNovaVida.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ public class HomeController {
 	@Autowired
 	private ItemService itemService;
 
+	@Cacheable
 	@GetMapping()
 	public String home(Model model, HttpSession session) {
 		List<Item> itens = itemService.findByEstadoDoItem(EstadoDoItem.DISPONIVEL);

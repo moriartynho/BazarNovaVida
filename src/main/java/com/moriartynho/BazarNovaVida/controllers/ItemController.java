@@ -1,6 +1,7 @@
 package com.moriartynho.BazarNovaVida.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,7 +49,9 @@ public class ItemController {
 			return "redirect:/";
 		}
 	}
+	
 
+	@Cacheable
 	@GetMapping("/selecionar")
 	public String itemPorId(@RequestParam Long id, Model model) {
 		Item item = itemService.findById(id);
@@ -56,6 +59,7 @@ public class ItemController {
 		return "item/itemSelecionado";
 	}
 
+	@Cacheable
 	@PostMapping("novo")
 	public String novo(@RequestParam MultipartFile imgFile, @Valid NovoItem novoItem, BindingResult result)
 			throws Exception {
