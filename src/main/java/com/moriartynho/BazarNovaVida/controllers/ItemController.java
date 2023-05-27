@@ -1,7 +1,5 @@
 package com.moriartynho.BazarNovaVida.controllers;
 
-import java.math.BigDecimal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,7 +57,8 @@ public class ItemController {
 	}
 
 	@PostMapping("novo")
-	public String novo(@RequestParam MultipartFile imgFile, @Valid NovoItem novoItem, BindingResult result) throws Exception {
+	public String novo(@RequestParam MultipartFile imgFile, @Valid NovoItem novoItem, BindingResult result)
+			throws Exception {
 
 		if (result.hasErrors()) {
 			return "item/novoItemForm";
@@ -83,12 +82,15 @@ public class ItemController {
 
 		itemService.adicionarAoCarrinho(usuario, id);
 
-		session.setAttribute("carrinho", usuario.getCarrinho());
 
-		BigDecimal totalPedido = usuario.getCarrinho().stream().map(Item::getValorDoItem).reduce(BigDecimal.ZERO,
-				BigDecimal::add);
-
-		session.setAttribute("totalPedido", totalPedido.doubleValue());
 		return "redirect:/";
+	}
+
+	@GetMapping("remover")
+	public String removerDoCarrinho(@RequestParam Integer index, HttpSession session) {
+		Usuario usuario = usuarioService.usuarioLogado(session);
+		usuario.getCarrinho().remove(index.intValue());
+		session.setAttribute("usuarioLogado", usuario);
+		return "redirect:/pedido/carrinho";
 	}
 }

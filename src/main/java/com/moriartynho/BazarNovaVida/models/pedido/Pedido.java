@@ -1,5 +1,6 @@
 package com.moriartynho.BazarNovaVida.models.pedido;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,8 @@ import com.moriartynho.BazarNovaVida.models.itens.Item;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,6 +36,17 @@ public class Pedido {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataDoPedido;
 
+	@Enumerated(EnumType.STRING)
+	private EstadoDoPedido estadoDoPedido = EstadoDoPedido.EM_ANDAMENTO;
+
+	public EstadoDoPedido getEstadoDoPedido() {
+		return estadoDoPedido;
+	}
+
+	public void setEstadoDoPedido(EstadoDoPedido estadoDoPedido) {
+		this.estadoDoPedido = estadoDoPedido;
+	}
+
 	public Pedido() {
 	}
 
@@ -42,7 +56,12 @@ public class Pedido {
 		this.dataDoPedido = dataDoPedido;
 	}
 
-	public Long getId() {
+	public BigDecimal getValorDoPedido() {
+		return itens.stream().map(Item::getValorDoItem).reduce(BigDecimal.ZERO, BigDecimal::add);
+	}
+
+	public String getId() {
+		String id = String.format("%04d", this.id);
 		return id;
 	}
 

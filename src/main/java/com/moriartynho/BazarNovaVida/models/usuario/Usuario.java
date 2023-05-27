@@ -1,5 +1,6 @@
 package com.moriartynho.BazarNovaVida.models.usuario;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +50,15 @@ public class Usuario {
 	private List<Item> carrinho = new ArrayList<>();;
 
 	public Usuario() {
+	}
+
+	public String getPrimeiroNome() {
+		String[] partesNome = this.nomeDoUsuario.split(" ");
+		return partesNome[0];
+	}
+
+	public BigDecimal getValorDoCarrinho() {
+		return carrinho.stream().map(Item::getValorDoItem).reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 
 	public List<Item> getCarrinho() {

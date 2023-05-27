@@ -123,3 +123,13 @@ body {
 .formulario {
 	padding: 2%;
 }
+
+.pedidos{
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.pedido_container{
+	width: 50%;
+}

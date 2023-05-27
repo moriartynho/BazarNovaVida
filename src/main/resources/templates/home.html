@@ -30,7 +30,7 @@
 			</div>
 			<div>
 				<a href=""> <span th:if="${session.usuarioLogado} != null"
-					th:text="${session.usuarioLogado.nomeDoUsuario}"> </span>
+					th:text="${session.usuarioLogado.primeiroNome}"> </span>
 				</a> <a href="/login/formulario"> <span th:if="${session.usuarioLogado} == null">Entrar
 				</span>
 				</a> <a th:href="@{pedido/carrinho}"><img class="carrinho__icone"

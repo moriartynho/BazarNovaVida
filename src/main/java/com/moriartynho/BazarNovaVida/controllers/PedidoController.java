@@ -27,7 +27,11 @@ public class PedidoController {
 	private PedidoService pedidoService;
 
 	@GetMapping("carrinho")
-	public String carrinho() {
+	public String carrinho(HttpSession session) {
+		Usuario usuario = usuarioService.usuarioLogado(session);
+		if (usuario == null) {
+			return "redirect:/login/formulario";
+		}
 		return "pedido/carrinho";
 	}
 

@@ -32,29 +32,48 @@
 		</nav>
 	</div>
 	<h2 style="text-align: center;">Carrinho</h2>
-	<div th:if="${session.carrinho} != null" class="container">
+	<div th:if="${#lists.isEmpty(session.usuarioLogado.carrinho)}"
+		class="container">
 		<div class="justify-content-md-center row">
 			<div class="col container-carrinho">
-				<div class="card" th:each="item : ${session.carrinho}">
+				<h5>Não há nada aqui :(</h5>
+				<a href="/">Retornar ao menu</a>
+			</div>
+		</div>
+	</div>
+	<div th:if="${not #lists.isEmpty(session.usuarioLogado.carrinho)}" class="container">
+		<div class="justify-content-md-center row">
+			<div class="col container-carrinho">
+				<div class="card" th:each="item : ${session.usuarioLogado.carrinho}">
 					<div style="text-align: center;">
 						<span
 							style="font-weight: bold; font-size: 1.4rem; text-align: center;"
 							th:text="${item.nomeDoItem}"></span>
+
 					</div>
 					<div>
-						<img class="img-thumbnail img-fluid" th:src="@{'/imagem/' + ${item.imagem.id}}" />
+						<img class="img-thumbnail img-fluid"
+							th:src="@{'/imagem/' + ${item.imagem.id}}" />
 					</div>
 					<div style="text-align: center;" class="">
 						<span th:if="${item.valorDoItem} != null"
 							th:text="${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')}"></span>
+
 					</div>
+					<div>
+						<a
+							th:href="@{/item/remover(index=${session.usuarioLogado.carrinho.indexOf(item)})}">Remover
+							item</a>
+					</div>
+
 				</div>
 			</div>
 			<div class="col" style="text-align: center">
 				<div class="card">
 					<h3 style="border-bottom: #dbdbdb 3px solid;">Informações do
 						pedido</h3>
-					<div class="pedido__info" th:each="item : ${session.carrinho}">
+					<div class="pedido__info"
+						th:each="item : ${session.usuarioLogado.carrinho}">
 						<div>
 							<span style="border-bottom: #e7e7e7 2px solid;"
 								th:text="${item.nomeDoItem +' '+ '(R$ '+ #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')+')'}"></span>
@@ -63,7 +82,7 @@
 					</div>
 
 					<span style="border-top: #dbdbdb 3px solid;"
-						th:text="${'Total: R$ ' + #numbers.formatDecimal(session.totalPedido, 2, 'POINT', 2, 'COMMA')}"></span>
+						th:text="${'Total: R$ ' + #numbers.formatDecimal(session.usuarioLogado.valorDoCarrinho, 2, 'POINT', 2, 'COMMA')}"></span>
 				</div>
 
 				<a href="/pedido/finalizar" class="btn btn-secondary">Finalizar
@@ -73,14 +92,7 @@
 
 	</div>
 
-	<div th:if="${session.carrinho} == null" class="container">
-		<div class="justify-content-md-center row">
-			<div class="col container-carrinho">
-				<h5>Não há nada aqui :(</h5>
-				<a href="/">Retornar ao menu</a>
-			</div>
-		</div>
-	</div>
+
 </body>
 
 </html>
