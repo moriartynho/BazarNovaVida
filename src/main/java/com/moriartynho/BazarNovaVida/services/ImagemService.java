@@ -25,7 +25,7 @@ public class ImagemService {
 	}
 
 	public Imagem dadosToImagem(MultipartFile file) throws Exception {
-		byte[] dados = compactarImagem(file.getInputStream(), 0.5f);
+		byte[] dados = compactarImagem(file.getInputStream(), 0.8f);
 
 		Imagem imagem = new Imagem();
 		imagem.setDados(dados);
