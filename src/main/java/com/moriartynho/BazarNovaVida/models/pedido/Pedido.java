@@ -51,17 +51,21 @@ public class Pedido {
 	public Pedido() {
 	}
 
-	public Pedido(List<Item> itens, Usuario usuario, LocalDate dataDoPedido) {
+	public Pedido(List<Item> itens, Usuario usuario) {
 		this.itens = itens;
 		this.usuario = usuario;
-		this.dataDoPedido = dataDoPedido;
+		this.dataDoPedido = LocalDate.now();
 	}
 
 	public BigDecimal getValorDoPedido() {
 		return itens.stream().map(Item::getValorDoItem).reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 
-	public String getId() {
+	public Long getId() {
+		return id;
+	}
+	
+	public String getFormatedId() {
 		String id = String.format("%04d", this.id);
 		return id;
 	}

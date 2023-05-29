@@ -9,6 +9,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
 	rel="stylesheet">
+<link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}" />
 <title>Adicionar item</title>
 </head>
 <body>
@@ -40,7 +41,7 @@
 			<form th:object="${novoItem}" class="card-body" action="/item/novo"
 				method="POST" enctype="multipart/form-data">
 				<div class="form-group">
-					<label for="nomeDoItem">Nome do item</label> <input
+				<input
 						th:field="*{nomeDoItem}" th:errorClass="is-invalid"
 						class="form-control" placeholder="Nome do item" /> <small>Informe
 						o nome do produto.</small>
@@ -49,7 +50,7 @@
 				</div>
 
 				<div class="form-group">
-					<label for="valorDoItem">Valor do item</label> <input
+					<input
 						th:field="*{valorDoItem}" th:errorClass="is-invalid"
 						class="form-control" type="number" placeholder="Valor do item" />
 					<small>Informe o valor do produto.</small>
@@ -58,7 +59,7 @@
 				</div>
 
 				<div class="form-group">
-					<label for="descricaoDoItem">Descrição do item</label> <input
+				<input
 						th:field="*{descricaoDoItem}" th:errorClass="is-invalid"
 						class="form-control" placeholder="Descrição do item" /> <small>Informe
 						a descrição do produto.</small>
@@ -69,7 +70,7 @@
 
 
 				<div class="form-group">
-					<label for="imgFile">Imagem</label> <input type="file"
+					 <input type="file"
 						accept="image/png, image/jpeg" name="imgFile" class="form-control"
 						placeholder="Imagem" /> <small>Informe a imagem do item.</small>
 

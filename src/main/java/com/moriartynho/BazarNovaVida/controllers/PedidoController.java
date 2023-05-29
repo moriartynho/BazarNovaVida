@@ -1,6 +1,7 @@
 package com.moriartynho.BazarNovaVida.controllers;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +40,14 @@ public class PedidoController {
 
 	@GetMapping("/finalizar")
 	public String finalizar(HttpSession session) {
-		List<Item> carrinho = (List<Item>) session.getAttribute("carrinho");
 		Usuario usuario = usuarioService.usuarioLogado(session);
-		LocalDate dataAtual = LocalDate.now();
 
-		Pedido pedido = new Pedido(carrinho, usuario, dataAtual);
+		Pedido pedido = new Pedido(usuario.getCarrinho(), usuario);
+
 		pedidoService.insert(pedido);
+		
+		usuario.getCarrinho().clear();
+		session.setAttribute("usuarioLogado", usuario);
 
 		return "redirect:/";
 	}

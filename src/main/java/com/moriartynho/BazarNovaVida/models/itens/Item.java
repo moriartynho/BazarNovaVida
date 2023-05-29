@@ -43,6 +43,7 @@ public class Item {
 	@Enumerated(EnumType.STRING)
 	private EstadoDoItem estadoDoItem;
 
+	
 	public Integer getId() {
 		return id;
 	}
