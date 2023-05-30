@@ -46,23 +46,27 @@
 		</div>
 	</header>
 	<main>
-		<h2 class="text-center">Pedidos</h2>
+		
 		<div class="container" style="display: flex;justify-content: center;">
-			<div class="pedido_container justify-content-md-center">
+			<div class="justify-content-md-center">
 
-				<div class="card" th:each="pedido : ${session.meusPedidos}">
-					<div class="card-body pedidos">
-						<a th:href="@{/pedido/selecionar(id=${pedido.id})}"><span name="id"
-							th:text=" 'Pedido Nº: ' + ${pedido.formatedId} + ' (' + ${pedido.estadoDoPedido + ')'}"></span></a>
+				<div class="card" th:each="item : ${pedido}">
+				
+					<div class="card-body pedido">
+					<h2 class="text-center" th:text=" 'Pedido Nº: ' + ${pedido.formatedId} + ' (' + ${pedido.estadoDoPedido + ')'}">Pedidos</h2>
+					
 						<span
 							th:text="${#temporals.format(pedido.dataDoPedido, 'dd/MM/yyyy HH:mm')}"></span>
 						<span
-							th:text="${'R$ ' + #numbers.formatDecimal(pedido.valorDoPedido, 2, 'POINT', 2, 'COMMA')}"></span>
+							th:text="${'Valor do pedido: '+'R$ ' + #numbers.formatDecimal(pedido.valorDoPedido, 2, 'POINT', 2, 'COMMA')}"></span>
 
 						<div th:each="item : ${pedido.itens}">
 							<img class="img-thumbnail img-fluid"
 								th:src="@{'/imagem/' + ${item.imagem.id}}"></img>
+								<span th:text="${item.nomeDoItem} + ' (' + ${'R$ ' + #numbers.formatDecimal(item.valorDoItem, 2, 'POINT', 2, 'COMMA')} +')'" ></span>
+								
 						</div>
+						<a th:href="@{/pedido/cancelar(id=${pedido.id})}"><small> Cancelar pedido</small></a>
 					</div>
 				</div>
 

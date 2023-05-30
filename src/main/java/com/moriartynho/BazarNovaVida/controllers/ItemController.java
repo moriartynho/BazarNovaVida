@@ -93,8 +93,8 @@ public class ItemController {
 	@GetMapping("remover")
 	public String removerDoCarrinho(@RequestParam Integer index, HttpSession session) {
 		Usuario usuario = usuarioService.usuarioLogado(session);
-		usuario.getCarrinho().remove(index.intValue());
-		session.setAttribute("usuarioLogado", usuario);
+		itemService.removerDoCarrinho(usuario, index, session);
+
 		return "redirect:/pedido/carrinho";
 	}
 }

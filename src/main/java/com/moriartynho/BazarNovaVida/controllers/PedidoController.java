@@ -1,17 +1,16 @@
 package com.moriartynho.BazarNovaVida.controllers;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.moriartynho.BazarNovaVida.models.itens.Item;
 import com.moriartynho.BazarNovaVida.models.pedido.Pedido;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 import com.moriartynho.BazarNovaVida.services.PedidoService;
@@ -45,7 +44,7 @@ public class PedidoController {
 		Pedido pedido = new Pedido(usuario.getCarrinho(), usuario);
 
 		pedidoService.insert(pedido);
-		
+
 		usuario.getCarrinho().clear();
 		session.setAttribute("usuarioLogado", usuario);
 
@@ -64,6 +63,29 @@ public class PedidoController {
 		System.out.println(pedidos);
 
 		return "pedido/meusPedidos";
+	}
+
+	@GetMapping("/selecionar")
+	public String pedidoPorId(@RequestParam Long id, Model model, HttpSession session) {
+		Usuario usuario = usuarioService.usuarioLogado(session);
+		Pedido pedido = pedidoService.findById(id);
+		if (usuario.getId() == pedido.getUsuario().getId()) {
+			model.addAttribute("pedido", pedido);
+			return "pedido/pedidoSelecionado";
+		}
+		return "pedido/meusPedidos";
+
+	}
+	
+	@GetMapping("/cancelar")
+	public String cancelarPedido(@RequestParam Long id, HttpSession session) {
+		Usuario usuario = usuarioService.usuarioLogado(session);
+		Pedido pedido = pedidoService.findById(id);
+		if (usuario.getId() == pedido.getUsuario().getId()) {
+			pedidoService.cancelarPedido(pedido);
+			return "pedido/meusPedidos";
+		}
+		return "pedido/pedidoSelecionado";
 	}
 
 }

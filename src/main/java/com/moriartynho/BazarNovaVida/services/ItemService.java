@@ -13,6 +13,8 @@ import com.moriartynho.BazarNovaVida.models.itens.imagem.Imagem;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 import com.moriartynho.BazarNovaVida.repositories.ItemRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class ItemService {
 
@@ -45,6 +47,14 @@ public class ItemService {
 			itemRepository.save(item);
 		}
 
+	}
+
+	public void removerDoCarrinho(Usuario usuario, Integer index, HttpSession session) {
+		Item item = findById(usuario.getCarrinho().get(index).getId());
+		item.setEstadoDoItem(EstadoDoItem.DISPONIVEL);
+		usuario.getCarrinho().remove(index.intValue());
+		session.setAttribute("usuarioLogado", usuario);
+		itemRepository.save(item);
 	}
 
 }

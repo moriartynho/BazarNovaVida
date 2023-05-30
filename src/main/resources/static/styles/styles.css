@@ -133,3 +133,12 @@ body {
 .pedido_container{
 	width: 50%;
 }
+
+.pedido{
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+.pedido_selecionado_container{
+	width: 50%;
+}

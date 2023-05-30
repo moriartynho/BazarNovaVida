@@ -34,7 +34,7 @@ public class Pedido {
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDate dataDoPedido;
 
 	@Enumerated(EnumType.STRING)

@@ -23,7 +23,7 @@ public class Item {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@NotBlank
 	@Length(min = 5)
@@ -43,9 +43,12 @@ public class Item {
 	@Enumerated(EnumType.STRING)
 	private EstadoDoItem estadoDoItem;
 
-	
-	public Integer getId() {
+	public Long getId() {
 		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getDescricaoDoItem() {
@@ -54,10 +57,6 @@ public class Item {
 
 	public void setDescricaoDoItem(String descricaoDoItem) {
 		this.descricaoDoItem = descricaoDoItem;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getNomeDoItem() {
