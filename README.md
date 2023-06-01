@@ -1,4 +1,8 @@
-# <p align="center">BazarNovaVida</p>
+# <p align="center"> BazarNovaVida ![image](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+
+
+</p>
+
 ## <p align="center">Projeto Spring MVC - Bazar Igreja Batista Nova Vida</p>
 <br>Tecnologias, Ferramentas e Técnicas utilizadas: 
 
@@ -49,3 +53,10 @@
  <br>Essa página permite adicionar as peças no banco de dados para serem exibidas. Essa tela só pode ser acessada por usuários do tipo ADMINISTRADOR<br>
  
  ![image](https://github.com/moriartynho/BazarNovaVida/assets/67657259/fdf9767e-4c14-4d52-98ab-a598530f62f8)
+
+<br><small>Ideias a serem implementadas: 
+ <ul>
+ <li>Página para listar todos os pedidos do banco de dados (recurso para usuários administradores)</li> 
+ <li>implementação de formas de pagamento</li>
+</ul>
+  </small>
