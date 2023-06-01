@@ -57,6 +57,7 @@
 <br><small>Ideias a serem implementadas: 
  <ul>
  <li>Página para listar todos os pedidos do banco de dados (recurso para usuários administradores)</li> 
- <li>implementação de formas de pagamento</li>
+ <li>Edição de itens (recurso para usuários administradores)</li>
+  <li>implementação de formas de pagamento</li>
 </ul>
   </small>
