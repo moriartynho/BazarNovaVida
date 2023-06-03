@@ -7,7 +7,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -30,11 +29,7 @@ public class PedidoController {
 
 	@GetMapping("carrinho")
 	public String carrinho(HttpSession session) {
-		Usuario usuario = usuarioService.usuarioLogado(session);
-		if (usuario == null) {
-			return "redirect:/login/formulario";
-		}
-		return "pedido/carrinho";
+		return (usuarioService.verificarLogin(session)) ? "pedido/carrinho" : "redirect:/login/formulario";
 	}
 
 	@GetMapping("/finalizar")
@@ -60,7 +55,6 @@ public class PedidoController {
 		}
 		List<Pedido> pedidos = pedidoService.findByUsuarioId(usuario.getId());
 		session.setAttribute("meusPedidos", pedidos);
-		System.out.println(pedidos);
 
 		return "pedido/meusPedidos";
 	}
@@ -86,6 +80,16 @@ public class PedidoController {
 			return "pedido/meusPedidos";
 		}
 		return "pedido/pedidoSelecionado";
+	}
+	
+	@GetMapping("todosPedidos")
+	public String todosPedidos(HttpSession session){
+		if(usuarioService.verificarPermissao(session)) {
+			List<Pedido> pedidos = pedidoService.findAll();
+			session.setAttribute("todosPedidos", pedidos);
+			return "pedido/todosPedidos";
+		}
+		return "redirect:/";
 	}
 
 }

@@ -25,11 +25,14 @@
 					pedidos</a> <a
 					th:if="${session.usuarioLogado} != null and ${session.usuarioLogado.tipoDeUsuario} == ${T(com.moriartynho.BazarNovaVida.models.usuario.TipoDeUsuario).ADMINISTRADOR}"
 					href="/item/formulario" class="nav-item nav-link">Novo item</a>
+					<a
+					th:if="${session.usuarioLogado} != null and ${session.usuarioLogado.tipoDeUsuario} == ${T(com.moriartynho.BazarNovaVida.models.usuario.TipoDeUsuario).ADMINISTRADOR}"
+					th:href="@{/pedido/todosPedidos}" class="nav-item nav-link">Todos os pedidos</a>
 
 
 			</div>
 			<div>
-				<a href=""> <span th:if="${session.usuarioLogado} != null"
+				<a th:href="@{usuario/perfil}"> <span th:if="${session.usuarioLogado} != null"
 					th:text="${session.usuarioLogado.primeiroNome}"> </span>
 				</a> <a href="/login/formulario"> <span th:if="${session.usuarioLogado} == null">Entrar
 				</span>

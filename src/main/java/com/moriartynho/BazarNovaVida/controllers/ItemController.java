@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.moriartynho.BazarNovaVida.dto.NovoItem;
 import com.moriartynho.BazarNovaVida.models.itens.Item;
 import com.moriartynho.BazarNovaVida.models.itens.imagem.Imagem;
-import com.moriartynho.BazarNovaVida.models.usuario.TipoDeUsuario;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 import com.moriartynho.BazarNovaVida.services.ImagemService;
 import com.moriartynho.BazarNovaVida.services.ItemService;
@@ -38,16 +37,7 @@ public class ItemController {
 
 	@GetMapping("formulario")
 	public String formulario(NovoItem novo, HttpSession session) {
-		Usuario usuario = usuarioService.usuarioLogado(session);
-		if (usuario == null) {
-			return "redirect:/login/formulario";
-		}
-
-		if (usuario.getTipoDeUsuario() == TipoDeUsuario.ADMINISTRADOR) {
-			return "item/novoItemForm";
-		} else {
-			return "redirect:/";
-		}
+		return  (usuarioService.verificarPermissao(session)) ? "item/novoItemForm" : "redirect:/";
 	}
 	
 

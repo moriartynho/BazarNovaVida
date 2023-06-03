@@ -124,21 +124,28 @@ body {
 	padding: 2%;
 }
 
-.pedidos{
+.pedidos {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
 }
 
-.pedido_container{
+.pedido_container {
 	width: 50%;
 }
 
-.pedido{
+.pedido {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
 }
-.pedido_selecionado_container{
+
+.pedido_selecionado_container {
 	width: 50%;
+}
+
+.perfil__card {
+	width: 40%;
+	align-items: center;
+	gap: 7px;
 }

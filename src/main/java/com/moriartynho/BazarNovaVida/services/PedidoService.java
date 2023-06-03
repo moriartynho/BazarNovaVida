@@ -34,5 +34,9 @@ public class PedidoService {
 		pedidoRepository.save(pedido);
 	}
 
+	public List<Pedido> findAll() {
+		return pedidoRepository.findAll();
+	}
+
 
 }

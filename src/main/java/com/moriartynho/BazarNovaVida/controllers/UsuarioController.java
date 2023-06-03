@@ -11,6 +11,7 @@ import com.moriartynho.BazarNovaVida.dto.NovoUsuario;
 import com.moriartynho.BazarNovaVida.models.usuario.Usuario;
 import com.moriartynho.BazarNovaVida.services.UsuarioService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -41,6 +42,17 @@ public class UsuarioController {
 			return "usuario/novoUsuarioForm";
 		}
 
+	}
+
+	@GetMapping("perfil")
+	public String perfil(HttpSession session) {
+		return (usuarioService.verificarLogin(session)) ? "usuario/perfil" : "redirect:/";
+	}
+	
+	@GetMapping("deslogar")
+	public String deslogar(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 
 }
